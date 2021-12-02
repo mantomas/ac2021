@@ -7,7 +7,7 @@ for i, j in enumerate(depths[1:]):
     if j > depths[i]:
         up += 1
 
-triplets = [depths[i] + depths[i+1] + depths[i+2] for i,j in enumerate(depths[:-2])]
+triplets = [depths[i] + depths[i+1] + depths[i+2] for i, j in enumerate(depths[:-2])]
 
 up3 = 0
 for i, j in enumerate(triplets[1:]):
