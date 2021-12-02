@@ -15,7 +15,7 @@ for command, value in planned_course:
         depth += value
     else:
         depth -= value
-        if depth < 0: # can submarine fly?
+        if depth < 0:  # can submarine fly?
             depth = 0
 
 print(distance * depth)
@@ -33,7 +33,7 @@ for command, value in planned_course:
             depth2 += value * aim
         elif aim < 0:
             depth2 -= value * abs(aim)
-            if depth2 < 0: # no, submarines canot fly
+            if depth2 < 0:  # no, submarines canot fly
                 depth2 = 0
     elif command == "down":
         aim += value
