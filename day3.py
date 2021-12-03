@@ -1,33 +1,20 @@
+from collections import defaultdict
+
 with open("day_3_in.txt", "r") as f:
     content = [line.strip() for line in f.readlines()]
 
 # PART ONE
 
-numbers = {
-    "a0": 0,
-    "a1": 0,
-    "a2": 0,
-    "a3": 0,
-    "a4": 0,
-    "a5": 0,
-    "a6": 0,
-    "a7": 0,
-    "a8": 0,
-    "a9": 0,
-    "a10": 0,
-    "a11": 0
-}
-
 # counting 1 on possition 1-12
+numbers = defaultdict(int)
 for line in content:
     for i, j in enumerate(line):
-        if j == "1":
-            numbers[f"a{i}"] += 1
+        numbers[i] += int(j)
 
-gamma = []
-epsilon = []
 
 # constructing gamma/epsilon numbers
+gamma = []
+epsilon = []
 for number in numbers.values():
     if number > len(content) / 2:
         gamma.append("1")
