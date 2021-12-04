@@ -1,2 +1,5 @@
 .python-version
 tests/
+__pycache__/
+.coverage
+__init__.py
