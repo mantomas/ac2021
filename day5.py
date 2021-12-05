@@ -1,4 +1,5 @@
 import re
+import timeit
 from collections import defaultdict
 
 
@@ -30,8 +31,9 @@ def make_map_hv(input_list):
     return blank_map
 
 
-# map for PART 2
-def make_map_all(input_list):
+# PART 2 (version A)
+def part_2_with_map(file_name):
+    input_list = parse_data(file_name)
     blank_map = [
         [0 for i in range(1000)] for j in range(1000)
     ]
@@ -67,7 +69,7 @@ def make_map_all(input_list):
             # add points
             for row, column in zip(y_points, x_points):
                 blank_map[row][column] += 1
-    return blank_map
+    return count_over_two(blank_map)
 
 
 def count_over_two(map_of_vents):
@@ -116,18 +118,28 @@ def part_2_defaultdict(file_name):
             for row, column in zip(y_points, x_points):
                 vents[(row, column)] += 1
     return len([value for value in vents.values() if value > 1])
-    
 
 
 def main(file_name):
     input_list = parse_data(file_name)
     map_of_vents = make_map_hv(input_list)
-    map_of_all_vents = make_map_all(input_list)
-    return count_over_two(map_of_vents), count_over_two(map_of_all_vents)
+    part_1 = count_over_two(map_of_vents)
+    part_2 = part_2_with_map(file_name)
+    return part_1, part_2
 
 
 if __name__ == '__main__':
     part1, part2 = main('day_5_in.txt')
     print(f"Part one: {part1}")
     print(f"Part two: {part2}")
-    print(f"Part two_B: {part_2_defaultdict('day_5_in.txt')}")
+    print("Speed comparison")
+    print("Part two_A:", timeit.timeit(
+        "part_2_with_map('day_5_in.txt')",
+        setup="from __main__ import part_2_with_map",
+        number=1)
+        )
+    print("Part two_B:", timeit.timeit(
+        "part_2_defaultdict('day_5_in.txt')",
+        setup="from __main__ import part_2_defaultdict",
+        number=1)
+        )
