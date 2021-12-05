@@ -1,4 +1,5 @@
 import re
+from collections import defaultdict
 
 
 def parse_data(file_name):
@@ -14,7 +15,7 @@ def make_map_hv(input_list):
         [0 for i in range(1000)] for j in range(1000)
     ]
     for line in input_list:
-        # columns 
+        # columns
         if line[0] == line[2]:
             line_points_y = [int(line[1]), int(line[3])]
             possition = int(line[0])
@@ -35,7 +36,7 @@ def make_map_all(input_list):
         [0 for i in range(1000)] for j in range(1000)
     ]
     for line in input_list:
-        # columns 
+        # columns
         if line[0] == line[2]:
             line_points_y = [int(line[1]), int(line[3])]
             possition = int(line[0])
@@ -78,13 +79,55 @@ def count_over_two(map_of_vents):
     return more_than_one
 
 
+# PART 2 (version B) - less work (no blank map)
+def part_2_defaultdict(file_name):
+    input_list = parse_data(file_name)
+    vents = defaultdict(int)
+    for line in input_list:
+        # columns
+        if line[0] == line[2]:
+            line_points_y = [int(line[1]), int(line[3])]
+            possition = int(line[0])
+            for i in range(min(line_points_y), max(line_points_y) + 1):
+                vents[(i, possition)] += 1
+        # rows
+        elif line[1] == line[3]:
+            line_points_x = [int(line[0]), int(line[2])]
+            line_number = int(line[1])
+            for j in range(min(line_points_x), max(line_points_x) + 1):
+                vents[(line_number, j)] += 1
+        # diagonals
+        else:
+            # X part
+            line_points_x = (int(line[0]), int(line[2]))
+            x_points = []
+            for i in range(min(line_points_x), max(line_points_x) + 1):
+                x_points.append(i)
+            if int(line[0]) > int(line[2]):
+                x_points.reverse()
+            # Y part
+            line_points_y = (int(line[1]), int(line[3]))
+            y_points = []
+            for i in range(min(line_points_y), max(line_points_y) + 1):
+                y_points.append(i)
+            if int(line[1]) > int(line[3]):
+                y_points.reverse()
+            # add points
+            for row, column in zip(y_points, x_points):
+                vents[(row, column)] += 1
+    return len([value for value in vents.values() if value > 1])
+    
+
+
 def main(file_name):
     input_list = parse_data(file_name)
     map_of_vents = make_map_hv(input_list)
     map_of_all_vents = make_map_all(input_list)
     return count_over_two(map_of_vents), count_over_two(map_of_all_vents)
 
+
 if __name__ == '__main__':
     part1, part2 = main('day_5_in.txt')
     print(f"Part one: {part1}")
     print(f"Part two: {part2}")
+    print(f"Part two_B: {part_2_defaultdict('day_5_in.txt')}")
