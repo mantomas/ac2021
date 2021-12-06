@@ -1,6 +1,6 @@
-tests/
+tests/__pycache__/
 __pycache__/
 .vscode/
 .python-version
 .coverage
-__init__.py
+playground.py
