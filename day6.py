@@ -1,0 +1,59 @@
+import re
+from collections import defaultdict
+
+
+def parse_data(file_name):
+    with open(file_name, "r") as f:
+        numbers = [int(i) for i in re.findall(r"\d+", f.read())]
+        return numbers
+
+
+# PART 1 - slow version :D
+def part_one(initial: list, repeat: int) -> int:
+    fishes = initial
+    for _ in range(repeat):
+        new_lf_count = fishes.count(0)
+        new_fishes = []
+        for lf in fishes:
+            if lf > 0:
+                new_fishes.append(lf - 1)
+            else:
+                new_fishes.append(6)
+        for _baby in range(new_lf_count):
+            new_fishes.append(8)
+        fishes = new_fishes
+    return len(fishes)
+
+
+# PART 2 - mač betr
+def part_two(initial: list, repeat: int) -> int:
+    data = defaultdict(int)
+    # initial dataset
+    for i in initial:
+        data[i] += 1
+    # counting days
+    for _ in range(repeat):
+        new_fishes = data[0] if data[0] else 0
+        data[0] = data[1]
+        data[1] = data[2]
+        data[2] = data[3]
+        data[3] = data[4]
+        data[4] = data[5]
+        data[5] = data[6]
+        data[6] = data[7] + new_fishes
+        data[7] = data[8]
+        data[8] = new_fishes
+    return sum(data.values())
+
+
+def main(file_name):
+    data = parse_data(file_name)
+    l_fish = part_one(data, 80)
+    l_fish_part_two = part_two(data, 256)
+    return l_fish, l_fish_part_two
+
+
+if __name__ == "__main__":
+    part_1, part_2 = main("day_6_in.txt")
+    print(f"Part one: {part_1}")
+    print(f"Part two: {part_2}")
