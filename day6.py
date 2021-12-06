@@ -33,15 +33,10 @@ def part_two(initial: list, repeat: int) -> int:
         data[i] += 1
     # counting days
     for _ in range(repeat):
-        new_fishes = data[0] if data[0] else 0
-        data[0] = data[1]
-        data[1] = data[2]
-        data[2] = data[3]
-        data[3] = data[4]
-        data[4] = data[5]
-        data[5] = data[6]
-        data[6] = data[7] + new_fishes
-        data[7] = data[8]
+        new_fishes = data[0]
+        for i in range(8):
+            data[i] = data[i + 1]
+        data[6] += new_fishes
         data[8] = new_fishes
     return sum(data.values())
 
