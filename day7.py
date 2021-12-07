@@ -49,9 +49,7 @@ def cost_part_two(possition, data):
     cost = 0
     for i in data:
         distance = abs(i - possition)
-        single_cost = 0
-        for j in range(distance + 1):
-            single_cost += j
+        single_cost = (distance * (distance + 1)) / 2
         cost += single_cost
     return cost
 
