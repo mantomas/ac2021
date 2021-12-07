@@ -2,10 +2,10 @@ from ..day6 import parse_data, part_one, part_two
 
 
 def test_parse_data():
-    assert parse_data("tests/test_day6_in.txt") == [3, 4, 3, 1, 2]
+    assert parse_data("tests/data_test_day_6.txt") == [3, 4, 3, 1, 2]
 
 
-data = parse_data("tests/test_day6_in.txt")
+data = parse_data("tests/data_test_day_6.txt")
 
 
 def test_part_one():
