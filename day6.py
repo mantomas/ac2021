@@ -1,6 +1,6 @@
 import re
 from collections import defaultdict
-from typing import DefaultDict, List
+from typing import DefaultDict, List, Tuple
 
 
 def parse_data(file_name: str) -> List[int]:
@@ -42,7 +42,7 @@ def part_two(initial: List[int], repeat: int) -> int:
     return sum(data.values())
 
 
-def main(file_name: str):
+def main(file_name: str) -> Tuple[int, int]:
     data = parse_data(file_name)
     l_fish = part_one(data, 80)
     l_fish_part_two = part_two(data, 256)
