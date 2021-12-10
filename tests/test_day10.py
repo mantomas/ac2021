@@ -1,5 +1,5 @@
 from ..day10 import corrupted_points, parse_data, part_one, \
-    score, points, part_two
+    score, part_two
 
 
 def test_parse_data():
@@ -19,7 +19,7 @@ def test_parse_data():
 
 def test_corrupted_points():
     assert corrupted_points("{([(<{}[<>[]}>{[]{[(<()>") == 1197
-    assert corrupted_points("[({(<(())[]>[[{[]{<()<>>") == 0
+    assert corrupted_points("[({(<(())[]>[[{[]{<()<>>") == ['[', '(', '{', '(', '[', '[', '{', '{']
     assert corrupted_points("[<(<(<(<{}))><([]([]()") == 3
 
 
@@ -29,10 +29,6 @@ def test_part_one():
 
 def test_score():
     assert score(['[', '(', '{', '(', '[', '[', '{', '{']) == 288957
-
-
-def test_points():
-    assert points("[({(<(())[]>[[{[]{<()<>>") == 288957
 
 
 def test_part_two():

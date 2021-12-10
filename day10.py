@@ -21,14 +21,16 @@ def corrupted_points(line):
                     return points[closing.index(i)]
             except Exception:
                 return points[closing.index(i)]
-    return 0
+    return control
 
 
 def part_one(file_name):
     data = parse_data(file_name)
     points = 0
     for line in data:
-        points += corrupted_points(line)
+        answer = corrupted_points(line)
+        if isinstance(answer, int):
+            points += corrupted_points(line)
     return points
 
 
@@ -43,23 +45,13 @@ def score(remaining):
     return points
 
 
-def points(line):
-    opening = "([{<"
-    control = []
-    for i in line:
-        if i in opening:
-            control.append(i)
-        else:
-            control.pop()
-    return score(control)            
-
-
 def part_two(file_name):
     data = parse_data(file_name)
     scores = []
     for line in data:
-        if corrupted_points(line) == 0:
-            scores.append(points(line))
+        answer = corrupted_points(line)
+        if isinstance(answer, list):
+            scores.append(score(answer))
     winner_index = int((len(scores) - 1) / 2)
     return sorted(scores)[winner_index]
 
