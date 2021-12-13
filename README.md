@@ -8,3 +8,5 @@
 [Day 7 task](https://adventofcode.com/2021/day/7)  
 [Day 8 task](https://adventofcode.com/2021/day/8)  
 [Day 9 task](https://adventofcode.com/2021/day/9)  
+[Day 10 task](https://adventofcode.com/2021/day/10)  
+[Day 11 task](https://adventofcode.com/2021/day/11)  
