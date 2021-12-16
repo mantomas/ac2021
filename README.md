@@ -10,5 +10,7 @@
 [Day 9 task](https://adventofcode.com/2021/day/9)  
 [Day 10 task](https://adventofcode.com/2021/day/10)  
 [Day 11 task](https://adventofcode.com/2021/day/11)  
-[Day 12 task] skipped  
+[Day 12 task](https://adventofcode.com/2021/day/12)  
 [Day 13 task](https://adventofcode.com/2021/day/13)  
+[Day 14 task](https://adventofcode.com/2021/day/14)  Not yet :)
+[Day 15 task](https://adventofcode.com/2021/day/15)  
